@@ -1,0 +1,26 @@
+{
+  "name": "vue3music",
+  "version": "1.0.0",
+  "description": "Mock NeteaseCloudMusic by vite+vue3+typescript",
+  "main": "index.js",
+  "repository": "https://github.com/wuliqun/vue3Music.git",
+  "author": "wuliqun",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "beta": "vite build -m beta",
+    "prod": "vite build",
+    "tiny": ""
+  },
+  "dependencies": {
+    "@types/node": "^18.0.5",
+    "@vitejs/plugin-vue": "^3.0.0",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
+    "path": "^0.12.7",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.0",
+    "vue": "^3.2.36",
+    "vue-router": "^4.0.13"
+  }
+}
