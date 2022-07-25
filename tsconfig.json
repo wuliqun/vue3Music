@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "esnext",
     "allowJs": false,
     "checkJs": false,
     "strict": true,
@@ -11,6 +11,7 @@
     "lib": ["ES6","DOM"],
     "typeRoots": ["./types","./node_modules/@types"],
     "baseUrl": ".",
+    "moduleResolution": "node",
     "paths": {
       "*":["./node_modules/@types"],
       "CONFIG/*":["./config/*"],

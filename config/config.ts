@@ -1,7 +1,7 @@
 import { getQueryString } from "UTILS/utils";
 import apiConfig from './apiConfig';
 
-const ENV:string = process.env.ENV!;
+const ENV:string = getQueryString('env') || process.env.ENV!;
 
 // 调试模式, 打印接口请求及返回值
 const IS_DEBUG:boolean = Number(getQueryString('debug')) === 1;
