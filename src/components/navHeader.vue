@@ -36,7 +36,7 @@
         <div class="sub-links">
           <router-link class="sub-link" active-class="active" :class="{active:$route.name === 'recommend'}" :to="{name:'recommend'}">推荐</router-link>
           <router-link class="sub-link" active-class="active" :to="{name:'rank'}">排行榜</router-link>
-          <router-link class="sub-link" active-class="active" :to="{name:'playlist'}">歌单</router-link>
+          <router-link class="sub-link r" active-class="active" :to="{name:'playlist'}">歌单</router-link>
           <router-link class="sub-link" active-class="active" :to="{name:'djradio'}">主播电台</router-link>
           <router-link class="sub-link" active-class="active" :to="{name:'artist'}">歌手</router-link>
           <router-link class="sub-link" active-class="active" :to="{name:'album'}">新碟上架</router-link>
@@ -197,6 +197,20 @@ const isDiscover = computed(()=>{
         border-radius: 10px;
         &.active,&:hover{
           background-color: #9B0909;
+        }
+
+        &.r{
+          position: relative;
+          &:after{
+            content: "";
+            position: absolute;
+            top:2px;
+            right: 5px;
+            width: 8px;
+            height: 8px;
+            background-size: contain;
+            background-image: url(../img/header/ico-r.png);
+          }
         }
       }
     }
