@@ -1,6 +1,7 @@
 <template>
   <div class="p-index">
     INDEX PAGE
+    <router-view></router-view>
   </div>
 </template>
 <script lang="ts" setup>

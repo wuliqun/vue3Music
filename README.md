@@ -82,3 +82,7 @@ yarn mock (apiFile)
 yarn api
 ```
 根据api/apiConf.json, 自动生成接口定义, 包含接口interaface 
+
+
+### passphrase
+c-github h-wuliqun
