@@ -103,7 +103,7 @@ const isDiscover = computed(()=>{
           content:"";
           position: absolute;
           left:50%;
-          bottom:-0.5px;
+          bottom:0;
           transform: translateX(-50%);
           width: 12px;
           height: 6px;

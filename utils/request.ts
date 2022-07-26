@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { ENV, IS_DEBUG, APIURL } from 'CONFIG/config';
 
+// 输出样式控制
+const COMMON_STYLE = 'padding: 0 6px;color:#fff;border-radius: 4px;'
+const ERR_STYLE = COMMON_STYLE + 'background-color:red;'
+const SEND_STYLE = COMMON_STYLE + 'background-color:#FF9966;'
+const RECEIVE_STYLE = COMMON_STYLE + 'background-color:#66CC00;'
+
 const axiosInstance = axios.create({
   baseURL: APIURL,
   timeout: 10000,
@@ -11,15 +17,15 @@ const axiosInstance = axios.create({
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
   config => {
-    if(IS_DEBUG && ENV === 'beta'){
-      console.log(`request ${config.url}, params: \n`,config.data);
+    if (IS_DEBUG && ENV === 'beta') {
+      console.log(`%crequest ${config.url}, params: \n`, SEND_STYLE, config.data);
     }
     // Do something before request is sent
     return config;
   },
   err => {
-    if(IS_DEBUG && ENV === 'beta'){
-      console.log(`request send ERR ${err.config.url}, err: \n`,err);
+    if (IS_DEBUG && ENV === 'beta') {
+      console.log(`%crequest send ERR ${err.config.url}, err: \n`, ERR_STYLE, err);
     }
     // Do something with request error
     return Promise.reject(err.data.error.message);
@@ -28,14 +34,14 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   res => {
-    if(IS_DEBUG && ENV === 'beta'){
-      console.log(`reponse ${res.config.url}, res: \n`,res.data);
+    if (IS_DEBUG && ENV === 'beta') {
+      console.log(`%creponse ${res.config.url}, res: \n`,RECEIVE_STYLE, res.data);
     }
     return res;
   },
   err => {
-    if(IS_DEBUG && ENV === 'beta'){
-      console.log(`request ERR ${err.config.url}, err: \n`,err);
+    if (IS_DEBUG && ENV === 'beta') {
+      console.log(`%crequest ERR ${err.config.url}, err: \n`,ERR_STYLE, err);
     }
     // Do something with response error
     return Promise.reject(err);
@@ -62,11 +68,11 @@ export default (options: RequestOptions): Promise<any> => {
   const config = {
     url: options.url,
     method: options.method || 'post',
-    data: options.clearCache ? 
-      Object.assign({}, options.data, { timestamp: Date.now() }) 
+    data: options.clearCache ?
+      Object.assign({}, options.data, { timestamp: Date.now() })
       : (options.data || {})
   };
-  return axiosInstance(config).then(res=>{
+  return axiosInstance(config).then(res => {
     return res.data;
   });
 }
