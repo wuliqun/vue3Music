@@ -23,7 +23,7 @@ function blurImage(url:string,blur:string="40x20"):string{
  */
  function updateUrlQuery(url: string, params: {[k:string]:any} = {}): string {
   let hostPath = url.split('?')[0];
-  let search = url.split('?')[1];
+  let search = url.split('?')[1] || '';
   let tail = '';
   let searchObj: any = {};
   let index1 = search.indexOf('/'),

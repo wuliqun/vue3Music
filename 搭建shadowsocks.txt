@@ -1,0 +1,50 @@
+yum install python-setuptools
+
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py 
+python get-pip.py
+
+pip install shadowsocks
+pip install https://github.com/shadowsocks/shadowsocks/archive/master.zip
+
+# 直接运行 
+ssserver -p 9999 -k wlq@@1991QNZ -m chacha20-ietf-poly1305 -d start
+
+# 配置文件
+{
+    "server":"my_server_ip",
+    "server_port":9999,
+    "local_address": "127.0.0.1",
+    "local_port":1080,
+    "password":"mypassword",
+    "timeout":300,
+    "method":"chacha20-ietf-poly1305"
+}
+ssserver -c /etc/shadowsocks.json -d start
+
+# 停止
+ssserver -d stop
+
+
+# linux 
+yum install python-setuptools
+
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py 
+python get-pip.py
+
+pip install https://github.com/shadowsocks/shadowsocks/archive/master.zip
+
+
+# 安装 libsodium
+yum install gcc 
+curl https://download.libsodium.org/libsodium/releases/LATEST.tar.gz -o LATEST.tar.gz
+tar xf LATEST.tar.gz
+cd libsodium*
+./configure
+make && make check
+sudo make install
+ldconfig
+
+# 直接运行 
+ssserver -p 9999 -k wlq@@1991QNZ -m chacha20-ietf-poly1305 -d start
+
+
