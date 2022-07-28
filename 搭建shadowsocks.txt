@@ -42,9 +42,39 @@ cd libsodium*
 ./configure
 make && make check
 sudo make install
+echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
 ldconfig
 
 # 直接运行 
 ssserver -p 9999 -k wlq@@1991QNZ -m chacha20-ietf-poly1305 -d start
 
 
+
+
+# vi ss.sh
+# 粘贴以下内容保存
+# chmod u+x ss.sh
+# ./ss.sh
+
+# linux 
+yum install python-setuptools
+
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py 
+python get-pip.py
+
+pip install https://github.com/shadowsocks/shadowsocks/archive/master.zip
+
+
+# 安装 libsodium
+yum install gcc 
+curl https://download.libsodium.org/libsodium/releases/LATEST.tar.gz -o LATEST.tar.gz
+tar xf LATEST.tar.gz
+cd libsodium*
+./configure
+make && make check
+sudo make install
+echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
+ldconfig
+
+# 直接运行 
+ssserver -p 9999 -k wlq@@1991QNZ -m chacha20-ietf-poly1305 -d start
