@@ -13,6 +13,7 @@ const djradio = () => import('../pages/discover/djradio.vue');
 const artist = () => import('../pages/discover/artist.vue');
 const playlist = () => import('../pages/discover/playlist.vue');
 const album = () => import('../pages/discover/album.vue');
+const song = () => import('../pages/discover/song.vue');
 
 
 
@@ -54,6 +55,11 @@ const router = createRouter({
           path: "/album",
           name: "album",
           component: album
+        },
+        {
+          path: "/song",
+          name: "song",
+          component: song
         },
       ]
     }, {
