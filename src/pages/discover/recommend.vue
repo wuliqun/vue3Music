@@ -7,10 +7,15 @@
           <!-- 歌单推荐 -->
           <div class="r-list">
             <section-title v-bind="playlistTitle"></section-title>
+            <div class="playlist-wrapper">
+              <playlists :list="recommendPlaylist"></playlists>
+            </div>
           </div>
 
           <!-- 专辑推荐 -->
-          <div class="r-list"></div>
+          <div class="r-list">
+            <section-title v-bind="albumTitle"></section-title>
+          </div>
 
           <!-- 热榜推荐 -->
           <div class="r-list"></div>
@@ -21,11 +26,13 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { reactive, ref, Ref } from 'vue';
 import Banner from '../../components/banner.vue';
 import SectionTitle from '../../components/sectionTitle.vue';
 import playlists from '../../components/playlists.vue';
+import { apiGetRecommendPlaylist } from '../../api';
 
+//#region 歌单推荐
 const playlistTitle = reactive({
   title: "热门推荐",
   route: '/playlist',
@@ -53,14 +60,31 @@ const playlistTitle = reactive({
       route: "/playlist?cat=电子"
     },
   ]
-})
+});
+const recommendPlaylist: Ref<any[]> = ref([]);
+function getRecommendPlaylist() {
+  return apiGetRecommendPlaylist().then(res => {
+    recommendPlaylist.value = res.result;
+  });
+}
+getRecommendPlaylist();
+//#endregion
+
+//#region 新碟上架
+const albumTitle = reactive(
+  {
+    title: "新碟上架",
+    route: '/album',
+    type: 1,
+    moreType: 1,
+  })
+//#endregion
 
 </script>
 <style lang="scss">
 .p-recommend {
   .recommend {
     display: flex;
-    height: 500px;
     border: 1px solid #d3d3d3;
     background-color: #fff;
     border-width: 0 1px;
@@ -72,7 +96,11 @@ const playlistTitle = reactive({
 
       .r-list {
         width: 689px;
-        margin: 0 auto 60px;
+        margin: 0 auto 10px;
+
+        .playlist-wrapper {
+          margin-top: 20px;
+        }
       }
     }
 
